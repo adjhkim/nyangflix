@@ -29,7 +29,7 @@ export function App() {
         <meta name="nayngflix" content="nayngflix" />
         <style>
           @import
-          url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+          url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap');
         </style>
       </Helmet>
 

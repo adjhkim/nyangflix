@@ -6,7 +6,7 @@ const Background = styled.div`
   height: 100vh;
   background-color: #141414;
   color: #fff;
-  font-family: 'Black Han Sans', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 `;
 
 const Header = styled.div`
@@ -27,23 +27,54 @@ const Wrapper = styled.div`
 `;
 
 const HeaderTitle = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 4px;
 `;
 
 const NavBar = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 10%;
   min-width: 200px;
   height: 100%;
+  padding: 10vh 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 1s;
 `;
 
 const BarItem = styled.span`
-  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #141414;
+    animation: breathe 1500ms infinite both;
+  }
+
+  @keyframes breathe {
+    0% {
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+    50% {
+      font-weight: 100;
+      letter-spacing: 0px;
+    }
+    100% {
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+  }
 `;
 
 const ContentBox = styled.div`
@@ -63,10 +94,10 @@ export function AdminPage() {
         </Header>
         <Wrapper>
           <NavBar>
-            <BarItem>태그 관리</BarItem>
-            <BarItem>시리즈 관리</BarItem>
-            <BarItem>리스트 관리</BarItem>
-            <BarItem>카테고리 관리</BarItem>
+            <BarItem>태그</BarItem>
+            <BarItem>시리즈</BarItem>
+            <BarItem>리스트</BarItem>
+            <BarItem>카테고리</BarItem>
           </NavBar>
           <ContentBox></ContentBox>
         </Wrapper>
