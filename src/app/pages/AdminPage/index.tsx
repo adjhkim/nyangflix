@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminAction } from 'store/admin';
+import store from 'store/index';
 import styled from 'styled-components';
 
 const Background = styled.div`
@@ -86,6 +89,12 @@ const ContentBox = styled.div`
 `;
 
 export function AdminPage() {
+  const dispatch = useDispatch();
+  // const adminState = useSelector(state => state.admin);
+  const adminToggle = function () {
+    dispatch(adminAction.toggle());
+  };
+
   return (
     <>
       <Background>
@@ -94,10 +103,12 @@ export function AdminPage() {
         </Header>
         <Wrapper>
           <NavBar>
-            <BarItem>태그</BarItem>
-            <BarItem>시리즈</BarItem>
-            <BarItem>리스트</BarItem>
-            <BarItem>카테고리</BarItem>
+            <BarItem className="off" onClick={() => adminToggle()}>
+              태그
+            </BarItem>
+            <BarItem className="off">시리즈</BarItem>
+            <BarItem className="off">리스트</BarItem>
+            <BarItem className="off">카테고리</BarItem>
           </NavBar>
           <ContentBox></ContentBox>
         </Wrapper>
