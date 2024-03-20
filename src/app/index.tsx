@@ -17,28 +17,33 @@ import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { AdminPage } from './pages/AdminPage/Loadable';
 
+import { Provider } from 'react-redux';
+import { store } from 'store';
+
 export function App() {
   const { i18n } = useTranslation();
   return (
-    <BrowserRouter>
-      <Helmet
-        titleTemplate="NYANGFLIX"
-        defaultTitle="NYANGFLIX"
-        htmlAttributes={{ lang: i18n.language }}
-      >
-        <meta name="nayngflix" content="nayngflix" />
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap');
-        </style>
-      </Helmet>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Helmet
+          titleTemplate="NYANGFLIX"
+          defaultTitle="NYANGFLIX"
+          htmlAttributes={{ lang: i18n.language }}
+        >
+          <meta name="nayngflix" content="nayngflix" />
+          <style>
+            @import
+            url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap');
+          </style>
+        </Helmet>
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="admin" element={<AdminPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <GlobalStyle />
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="admin" element={<AdminPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <GlobalStyle />
+      </BrowserRouter>
+    </Provider>
   );
 }

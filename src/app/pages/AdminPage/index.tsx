@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { adminAction } from 'store/admin';
-import store from 'store/index';
 import styled from 'styled-components';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { adminActions } from 'store';
 
 const Background = styled.div`
   width: 100%;
@@ -18,7 +17,7 @@ const Header = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 `;
 
 const Wrapper = styled.div`
@@ -44,41 +43,29 @@ const NavBar = styled.div`
   min-width: 200px;
   height: 100%;
   padding: 10vh 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
   transition: all 1s;
 `;
 
-const BarItem = styled.span`
+//NavBar에 들어갈 아이템 디자인 (hover&선택 시 하이라이트)
+const BarItem = styled.span<{ menuState?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 10vh;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 4px;
+  color: ${props => (props.menuState === 'on' ? 'rgb(229, 9, 20);' : 'none')};
+  font-size: 1rem;
+  font-weight: 1000;
+  letter-spacing: ${props => (props.menuState === 'on' ? '8px' : '4px')};
   cursor: pointer;
+  transition: all ease 0.5s;
 
   &:hover {
-    background-color: #141414;
-    animation: breathe 1500ms infinite both;
-  }
-
-  @keyframes breathe {
-    0% {
-      font-weight: 700;
-      letter-spacing: 4px;
-    }
-    50% {
-      font-weight: 100;
-      letter-spacing: 0px;
-    }
-    100% {
-      font-weight: 700;
-      letter-spacing: 4px;
-    }
+    letter-spacing: 8px;
   }
 `;
+//-----------------------------------------------------------------
 
 const ContentBox = styled.div`
   display: flex;
@@ -89,30 +76,42 @@ const ContentBox = styled.div`
 `;
 
 export function AdminPage() {
-  const dispatch = useDispatch();
-  // const adminState = useSelector(state => state.admin);
-  const adminToggle = function () {
-    dispatch(adminAction.toggle());
-  };
+  //선택한 메뉴 하이라이트 상태 관리
+  const selector = useAppSelector(state => state.adminMenu);
+  const dispatch = useAppDispatch();
+  //-----------------------------------------------------------------
+
+  //selector 크기만큼 BarItem 리스트 생성
+  function createBarItem() {
+    let menuName: string[] = ['TAG', 'SERIES', 'LIST', 'CATEGORY'];
+    let result: Array<JSX.Element> = [];
+    for (let i = 0; i < selector.length; i++) {
+      result.push(
+        <BarItem
+          key={'item' + i}
+          menuState={selector[i]}
+          onClick={() => {
+            dispatch(adminActions.resetMenu());
+            dispatch(adminActions.toggleMenu(i));
+          }}
+        >
+          {menuName[i]}
+        </BarItem>,
+      );
+    }
+    return result;
+  }
+  //-----------------------------------------------------------------
 
   return (
-    <>
-      <Background>
-        <Header>
-          <HeaderTitle>관리자 모드</HeaderTitle>
-        </Header>
-        <Wrapper>
-          <NavBar>
-            <BarItem className="off" onClick={() => adminToggle()}>
-              태그
-            </BarItem>
-            <BarItem className="off">시리즈</BarItem>
-            <BarItem className="off">리스트</BarItem>
-            <BarItem className="off">카테고리</BarItem>
-          </NavBar>
-          <ContentBox></ContentBox>
-        </Wrapper>
-      </Background>
-    </>
+    <Background>
+      <Header>
+        <HeaderTitle>관리자 모드</HeaderTitle>
+      </Header>
+      <Wrapper>
+        <NavBar>{createBarItem()}</NavBar>
+        <ContentBox></ContentBox>
+      </Wrapper>
+    </Background>
   );
 }
