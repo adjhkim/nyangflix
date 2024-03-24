@@ -16,6 +16,10 @@ import { useTranslation } from 'react-i18next';
 import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { AdminPage } from './pages/AdminPage/Loadable';
+import { AdminTag } from './pages/AdminPage/AdminTag/Loadable';
+import { AdminSeries } from './pages/AdminPage/AdminSeries/Loadable';
+import { AdminList } from './pages/AdminPage/AdminList/Loadable';
+import { AdminCategory } from './pages/AdminPage/AdminCategory/Loadable';
 
 import { Provider } from 'react-redux';
 import { store } from 'store';
@@ -36,10 +40,13 @@ export function App() {
             url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap');
           </style>
         </Helmet>
-
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="admin" element={<AdminPage />} />
+          <Route path="admin/tag" element={<AdminTag />} />
+          <Route path="admin/series" element={<AdminSeries />} />
+          <Route path="admin/list" element={<AdminList />} />
+          <Route path="admin/category" element={<AdminCategory />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <GlobalStyle />
