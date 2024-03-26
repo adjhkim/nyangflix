@@ -11,17 +11,19 @@ const Header = styled.div`
   width: 100%;
   height: 10vh;
   background-color: rgba(0, 0, 0, 0.9);
+  user-select: none;
+  transition: all ease 0.25s;
 `;
 
 const HeaderTitle = styled.span`
-  font-size: 1.2rem;
+  font-size: 2vh;
   font-weight: 800;
-  letter-spacing: 4px;
+  letter-spacing: 0.5vh;
   cursor: pointer;
-  transition: all ease 0.5s;
+  transition: all ease 0.25s;
 
   &:hover {
-    letter-spacing: 8px;
+    letter-spacing: 1vh;
   }
 `;
 

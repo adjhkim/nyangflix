@@ -7,8 +7,8 @@ const Background = styled.div`
   width: 100%;
   height: 100vh;
   background-color: #141414;
-  color: #fff;
   font-family: 'Noto Sans KR', sans-serif;
+  color: #fff;
 `;
 
 const Wrapper = styled.div`
@@ -17,15 +17,17 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 90vh;
+  overflow: hidden;
 `;
 
 const AdminContent = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   flex: 1;
   height: 100%;
-  padding: 5vh;
+  padding: 2vh 5vh;
 `;
 
 export function AdminPage(props: { content?: JSX.Element }) {

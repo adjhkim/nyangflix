@@ -9,12 +9,12 @@ const NavBar = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 10%;
-  min-width: 200px;
-  height: 100%;
-  padding: 10vh 0;
+  width: 25vh;
+  height: 90vh;
+  padding: 10vh 2vh;
   background-color: rgba(0, 0, 0, 0.75);
-  transition: all 1s;
+  transition: all ease 0.25s;
+  user-select: none;
 `;
 
 //NavBar에 들어갈 아이템 디자인 (hover&선택 시 하이라이트)
@@ -25,14 +25,14 @@ const BarItem = styled.span<{ menuState?: string }>`
   width: 100%;
   height: 10vh;
   color: ${props => (props.menuState === 'on' ? 'rgb(229, 9, 20);' : 'none')};
-  font-size: 1rem;
+  font-size: 1.75vh;
   font-weight: 1000;
-  letter-spacing: 4px;
+  letter-spacing: 0.5vh;
   cursor: pointer;
-  transition: all ease 0.5s;
+  transition: all ease 0.25s;
 
   &:hover {
-    letter-spacing: 8px;
+    letter-spacing: 1vh;
   }
 `;
 //-----------------------------------------------------------------
