@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { useAppSelector } from 'hooks';
 
-const Header = styled.div`
+const Head = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,20 +23,19 @@ const Title = styled.div`
   letter-spacing: 0.25vh;
 `;
 
-const SearchArea = styled.div`
+const Search = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 100%;
 `;
 
-export function ContentHeader(props: { name?: string }) {
+export function ContentHead() {
+  const selector = useAppSelector(state => state.adminMenuState);
   return (
-    <>
-      <Header>
-        <Title>{props.name}</Title>
-        <SearchArea></SearchArea>
-      </Header>
-    </>
+    <Head>
+      <Title>{selector.selected.korean + ' 관리'}</Title>
+      <Search></Search>
+    </Head>
   );
 }

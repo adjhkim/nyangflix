@@ -1,31 +1,36 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { AdminPage } from '..';
-import { ContentHeader } from 'app/components/components_admin/ContentHeader';
-import { ContentArea } from 'app/components/components_admin/ContentArea';
-
-const Test = styled.div``;
+import {
+  AdminBackground,
+  AdminBody,
+  AdminContentBox,
+  AdminHeader,
+  AdminNavBar,
+  MainBody,
+  MainBox,
+  MainHead,
+} from 'app/components/components_admin/AdminTemplate';
+import { AdminTitle } from 'app/components/components_admin/AdminTitle';
+import { NavBarItem } from 'app/components/components_admin/NavBarItem';
+import { ContentHead } from 'app/components/components_admin/ContentHead';
 
 export function AdminCategory() {
-  function createMainFunc() {
-    return <Test></Test>;
-  }
-
-  function createContent() {
-    return [<Test key={'test' + 1}></Test>];
-  }
-
   return (
-    <AdminPage
-      content={
-        <>
-          <ContentHeader name="카테고리 관리"></ContentHeader>
-          <ContentArea
-            func={createMainFunc()}
-            content={createContent()}
-          ></ContentArea>
-        </>
-      }
-    ></AdminPage>
+    <AdminBackground>
+      <AdminHeader>
+        <AdminTitle></AdminTitle>
+      </AdminHeader>
+      <AdminBody>
+        <AdminNavBar>
+          <NavBarItem></NavBarItem>
+        </AdminNavBar>
+        <AdminContentBox>
+          <ContentHead></ContentHead>
+          <MainBox>
+            <MainHead></MainHead>
+            <MainBody></MainBody>
+          </MainBox>
+        </AdminContentBox>
+      </AdminBody>
+    </AdminBackground>
   );
 }
