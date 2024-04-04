@@ -12,8 +12,20 @@ import {
 import { AdminTitle } from 'app/components/components_admin/AdminTitle';
 import { NavBarItem } from 'app/components/components_admin/NavBarItem';
 import { ContentHead } from 'app/components/components_admin/ContentHead';
+import { useAppDispatch } from 'hooks';
+import { menuStateActions } from 'store';
+import { useEffect } from 'react';
 
 export function AdminCategory() {
+  //현재 선택한 NavBar 메뉴 상태 관리
+  const pathName = window.location.pathname.split('/')[2];
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(menuStateActions.resetMenu());
+    dispatch(menuStateActions.toggleMenu(pathName));
+  });
+  //-----------------------------------------------------------------
+
   return (
     <AdminBackground>
       <AdminHeader>

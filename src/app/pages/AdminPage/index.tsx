@@ -8,8 +8,15 @@ import {
 } from 'app/components/components_admin/AdminTemplate';
 import { AdminTitle } from 'app/components/components_admin/AdminTitle';
 import { NavBarItem } from 'app/components/components_admin/NavBarItem';
+import { useAppDispatch } from 'hooks';
+import { menuStateActions } from 'store';
+import { useEffect } from 'react';
 
 export function AdminPage() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(menuStateActions.resetMenu());
+  });
   return (
     <AdminBackground>
       <AdminHeader>

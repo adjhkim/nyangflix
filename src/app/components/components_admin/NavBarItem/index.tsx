@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { menuStateActions } from 'store';
+import { useAppSelector } from 'hooks';
 import { useNavigate } from 'react-router-dom';
 
 //NavBar에 들어갈 아이템 디자인 (hover&선택 시 하이라이트)
@@ -27,20 +26,17 @@ const Item = styled.span<{ menuState?: string }>`
 export function NavBarItem() {
   //선택한 메뉴 하이라이트 상태 관리
   const selector = useAppSelector(state => state.adminMenuState);
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   //-----------------------------------------------------------------
 
   //adminMenu 크기만큼 BarItem 리스트 생성
   const result: JSX.Element[] = [];
-  for (let i = 0; i < selector.menu.length; i++) {
+  for (let i in selector.menu) {
     result.push(
       <Item
         key={'item' + i}
         menuState={selector.menu[i].onOff}
         onClick={() => {
-          dispatch(menuStateActions.resetMenu());
-          dispatch(menuStateActions.toggleMenu(i));
           navigate(`/admin/${selector.menu[i].name.toLowerCase()}`);
         }}
       >

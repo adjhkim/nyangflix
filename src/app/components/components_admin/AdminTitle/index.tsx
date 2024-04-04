@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useAppDispatch } from 'hooks';
-import { menuStateActions } from 'store';
 import { useNavigate } from 'react-router-dom';
 
 const Title = styled.span`
@@ -17,12 +15,10 @@ const Title = styled.span`
 `;
 
 export function AdminTitle() {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   return (
     <Title
       onClick={() => {
-        dispatch(menuStateActions.resetMenu());
         navigate('/admin');
       }}
     >
